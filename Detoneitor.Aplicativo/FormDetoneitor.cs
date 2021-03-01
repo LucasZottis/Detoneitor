@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32.TaskScheduler;
 using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -9,7 +10,9 @@ namespace Detoneitor.Aplicativo {
         private static readonly string _planejeitor = @"\Planejeitor.exe";
         private static readonly string _executeitor = @"\Executeitor.exe";
         private string _pastaRaiz;
+        private string _pastaAlvo;
         private bool _debug = false;
+        private Configuration _arquivoConfiguracao;
 
         public FormDetoneitor() {
             InitializeComponent();
@@ -18,6 +21,9 @@ namespace Detoneitor.Aplicativo {
 #endif
             if (_debug) _pastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
             else _pastaRaiz = Environment.CurrentDirectory;
+
+            _arquivoConfiguracao = ConfigurationManager.OpenExeConfiguration(_pastaRaiz + _planejeitor);
+            _pastaAlvo = _arquivoConfiguracao.AppSettings.Settings["CaminhoPasta"].Value;
         }
 
         private void FormDetoneitor_Load(object sender, EventArgs e) {
