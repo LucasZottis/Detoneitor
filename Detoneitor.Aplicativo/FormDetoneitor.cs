@@ -54,7 +54,7 @@ namespace Detoneitor.Aplicativo {
 
                 tamanhoPasta = somaTamanhoArquivos / 1048576;
 
-                
+                lblTamanhoPastaAlvo.Text = tamanhoPasta + " MB";
             } catch (Exception erro) {
                 MessageBox.Show(erro.Message, ".:: Detonêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

@@ -32,6 +32,8 @@ namespace Detoneitor.Aplicativo {
             this.gbxInformacoes = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblEstadoTarefa = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblTamanhoPastaAlvo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbxInformacoes.SuspendLayout();
             this.SuspendLayout();
@@ -95,13 +97,18 @@ namespace Detoneitor.Aplicativo {
             // 
             // gbxInformacoes
             // 
+            this.gbxInformacoes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxInformacoes.BackColor = System.Drawing.Color.Transparent;
+            this.gbxInformacoes.Controls.Add(this.lblTamanhoPastaAlvo);
+            this.gbxInformacoes.Controls.Add(this.label3);
             this.gbxInformacoes.Controls.Add(this.lblEstadoTarefa);
             this.gbxInformacoes.Controls.Add(this.label2);
             this.gbxInformacoes.ForeColor = System.Drawing.Color.White;
             this.gbxInformacoes.Location = new System.Drawing.Point(12, 147);
             this.gbxInformacoes.Name = "gbxInformacoes";
-            this.gbxInformacoes.Size = new System.Drawing.Size(475, 100);
+            this.gbxInformacoes.Size = new System.Drawing.Size(475, 73);
             this.gbxInformacoes.TabIndex = 3;
             this.gbxInformacoes.TabStop = false;
             this.gbxInformacoes.Text = "Informações";
@@ -124,12 +131,30 @@ namespace Detoneitor.Aplicativo {
             this.lblEstadoTarefa.Text = "Status";
             this.lblEstadoTarefa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(229, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Tamanho aproximado da pasta alvo:";
+            // 
+            // lblTamanhoPastaAlvo
+            // 
+            this.lblTamanhoPastaAlvo.Location = new System.Drawing.Point(344, 43);
+            this.lblTamanhoPastaAlvo.Name = "lblTamanhoPastaAlvo";
+            this.lblTamanhoPastaAlvo.Size = new System.Drawing.Size(125, 16);
+            this.lblTamanhoPastaAlvo.TabIndex = 3;
+            this.lblTamanhoPastaAlvo.Text = "Tamanho";
+            this.lblTamanhoPastaAlvo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormDetoneitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(499, 256);
+            this.ClientSize = new System.Drawing.Size(499, 229);
             this.Controls.Add(this.gbxInformacoes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -160,6 +185,8 @@ namespace Detoneitor.Aplicativo {
         private System.Windows.Forms.GroupBox gbxInformacoes;
         private System.Windows.Forms.Label lblEstadoTarefa;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTamanhoPastaAlvo;
+        private System.Windows.Forms.Label label3;
     }
 }
 
