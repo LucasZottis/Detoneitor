@@ -26,13 +26,11 @@ namespace Detoneitor.Planejeitor {
         private void FormPlanejeitor_Load(object sender, EventArgs e) {
             if (int.Parse(_arquivoConfiguracao.Dia) < 1 || int.Parse(_arquivoConfiguracao.Dia) > 31) {
                 MessageBox.Show("Dia informado é inválido!", ".:: Planejêitor ::. | Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else {
                 txtDia.Text = _arquivoConfiguracao.Dia;
             }
 
             if (Directory.Exists(_arquivoConfiguracao.CaminhoPasta) == false) {
                 MessageBox.Show("Caminho informado não existe!", ".:: Planejêitor ::. | Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else {
                 TxtCaminhoPasta.Text = _arquivoConfiguracao.CaminhoPasta;
             }
         }
