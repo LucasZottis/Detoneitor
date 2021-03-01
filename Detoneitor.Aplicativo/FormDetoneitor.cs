@@ -33,6 +33,9 @@ namespace Detoneitor.Aplicativo {
 
         private void FormDetoneitor_Load(object sender, EventArgs e) {
             try {
+                long somaTamanhoArquivos = 0;
+                double tamanhoPasta = 0;
+
                 using (TaskService tarefaServico = new TaskService()) {
                     Task tarefa = tarefaServico.FindTask("Detonêitor");
                     
@@ -43,6 +46,15 @@ namespace Detoneitor.Aplicativo {
                         case TaskState.Ready: lblEstadoTarefa.Text = "Pronto"; break;
                     }
                 }
+
+                FileInfo[] arquivos = new DirectoryInfo(_pastaAlvo).GetFiles();
+                foreach (FileInfo arquivo in arquivos) {
+                    somaTamanhoArquivos += arquivo.Length;
+                }
+
+                tamanhoPasta = somaTamanhoArquivos / 1048576;
+
+                
             } catch (Exception erro) {
                 MessageBox.Show(erro.Message, ".:: Detonêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
