@@ -26,6 +26,8 @@ namespace Detoneitor.Executeitor {
             } catch (Exception erro) {
                 Console.WriteLine(erro.Message);
                 Console.WriteLine(erro.StackTrace);
+            } finally {
+                Console.ReadKey();
             }
         }
     }
