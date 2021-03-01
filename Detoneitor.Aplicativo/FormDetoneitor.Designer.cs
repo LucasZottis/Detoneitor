@@ -117,12 +117,12 @@ namespace Detoneitor.Aplicativo {
             // 
             // lblEstadoTarefa
             // 
-            this.lblEstadoTarefa.AutoSize = true;
             this.lblEstadoTarefa.Location = new System.Drawing.Point(344, 23);
             this.lblEstadoTarefa.Name = "lblEstadoTarefa";
-            this.lblEstadoTarefa.Size = new System.Drawing.Size(45, 16);
+            this.lblEstadoTarefa.Size = new System.Drawing.Size(125, 16);
             this.lblEstadoTarefa.TabIndex = 1;
             this.lblEstadoTarefa.Text = "Status";
+            this.lblEstadoTarefa.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormDetoneitor
             // 
