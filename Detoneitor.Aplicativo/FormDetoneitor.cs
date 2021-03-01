@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Microsoft.Win32.TaskScheduler;
+using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Detoneitor.Aplicativo {
@@ -26,6 +20,23 @@ namespace Detoneitor.Aplicativo {
             else _pastaRaiz = Environment.CurrentDirectory;
         }
 
+        private void FormDetoneitor_Load(object sender, EventArgs e) {
+            try {
+                using (TaskService tarefaServico = new TaskService()) {
+                    Task tarefa = tarefaServico.FindTask("Detonêitor");
+                    
+                    switch (tarefa.State) {
+                        case TaskState.Unknown: lblEstadoTarefa.Text = "Desconhecido"; break;
+                        case TaskState.Disabled: lblEstadoTarefa.Text = "Desabilitado"; break;
+                        case TaskState.Running: lblEstadoTarefa.Text = "Rodando"; break;
+                        case TaskState.Ready: lblEstadoTarefa.Text = "Pronto"; break;
+                    }
+                }
+            } catch (Exception erro) {
+                MessageBox.Show(erro.Message, ".:: Detonêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnPlanejeitor_Click(object sender, EventArgs e) {
             try {
                 Process.Start(_pastaRaiz + _planejeitor);
@@ -33,7 +44,6 @@ namespace Detoneitor.Aplicativo {
                 MessageBox.Show(erro.Message, ".:: Detonêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnExecuteitor_Click(object sender, EventArgs e) {
             try {
                 Process.Start(_pastaRaiz + _executeitor);

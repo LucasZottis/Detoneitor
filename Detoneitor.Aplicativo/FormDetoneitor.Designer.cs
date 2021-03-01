@@ -29,7 +29,11 @@ namespace Detoneitor.Aplicativo {
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPlanejeitor = new System.Windows.Forms.Button();
+            this.gbxInformacoes = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblEstadoTarefa = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gbxInformacoes.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExecuteitor
@@ -89,12 +93,44 @@ namespace Detoneitor.Aplicativo {
             this.btnPlanejeitor.UseVisualStyleBackColor = true;
             this.btnPlanejeitor.Click += new System.EventHandler(this.btnPlanejeitor_Click);
             // 
+            // gbxInformacoes
+            // 
+            this.gbxInformacoes.BackColor = System.Drawing.Color.Transparent;
+            this.gbxInformacoes.Controls.Add(this.lblEstadoTarefa);
+            this.gbxInformacoes.Controls.Add(this.label2);
+            this.gbxInformacoes.ForeColor = System.Drawing.Color.White;
+            this.gbxInformacoes.Location = new System.Drawing.Point(12, 147);
+            this.gbxInformacoes.Name = "gbxInformacoes";
+            this.gbxInformacoes.Size = new System.Drawing.Size(475, 100);
+            this.gbxInformacoes.TabIndex = 3;
+            this.gbxInformacoes.TabStop = false;
+            this.gbxInformacoes.Text = "Informações";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Status da tarefa:";
+            // 
+            // lblEstadoTarefa
+            // 
+            this.lblEstadoTarefa.AutoSize = true;
+            this.lblEstadoTarefa.Location = new System.Drawing.Point(344, 23);
+            this.lblEstadoTarefa.Name = "lblEstadoTarefa";
+            this.lblEstadoTarefa.Size = new System.Drawing.Size(45, 16);
+            this.lblEstadoTarefa.TabIndex = 1;
+            this.lblEstadoTarefa.Text = "Status";
+            // 
             // FormDetoneitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(499, 152);
+            this.ClientSize = new System.Drawing.Size(499, 256);
+            this.Controls.Add(this.gbxInformacoes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnExecuteitor);
@@ -106,7 +142,10 @@ namespace Detoneitor.Aplicativo {
             this.MaximizeBox = false;
             this.Name = "FormDetoneitor";
             this.Text = ".:: Detonêitor ::.";
+            this.Load += new System.EventHandler(this.FormDetoneitor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.gbxInformacoes.ResumeLayout(false);
+            this.gbxInformacoes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,6 +157,9 @@ namespace Detoneitor.Aplicativo {
         private System.Windows.Forms.Button btnExecuteitor;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbxInformacoes;
+        private System.Windows.Forms.Label lblEstadoTarefa;
+        private System.Windows.Forms.Label label2;
     }
 }
 
