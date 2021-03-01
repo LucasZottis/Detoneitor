@@ -2,7 +2,6 @@
 using Detoneitor.Executeitor.Servicos;
 using System;
 using System.Configuration;
-using System.IO;
 
 namespace Detoneitor.Executeitor {
     class Program {
