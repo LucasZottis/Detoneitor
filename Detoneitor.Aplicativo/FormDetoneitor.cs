@@ -16,14 +16,19 @@ namespace Detoneitor.Aplicativo {
 
         public FormDetoneitor() {
             InitializeComponent();
+
 #if (DEBUG)
             _debug = true;
 #endif
             if (_debug) _pastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
             else _pastaRaiz = Environment.CurrentDirectory;
 
-            _arquivoConfiguracao = ConfigurationManager.OpenExeConfiguration(_pastaRaiz + _planejeitor);
-            _pastaAlvo = _arquivoConfiguracao.AppSettings.Settings["CaminhoPasta"].Value;
+            try {
+                _arquivoConfiguracao = ConfigurationManager.OpenExeConfiguration(_pastaRaiz + _planejeitor);
+                _pastaAlvo = _arquivoConfiguracao.AppSettings.Settings["CaminhoPasta"].Value;
+            } catch (Exception erro) {
+                MessageBox.Show(erro.Message, ".:: Detonêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void FormDetoneitor_Load(object sender, EventArgs e) {
