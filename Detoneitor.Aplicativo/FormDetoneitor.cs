@@ -38,7 +38,8 @@ namespace Detoneitor.Aplicativo {
 
                 using (TaskService tarefaServico = new TaskService()) {
                     Task tarefa = tarefaServico.FindTask("Detonêitor");
-                    
+
+                    //TODO: Verificar se a tarefa existe.
                     switch (tarefa.State) {
                         case TaskState.Unknown: lblEstadoTarefa.Text = "Desconhecido"; break;
                         case TaskState.Disabled: lblEstadoTarefa.Text = "Desabilitado"; break;
