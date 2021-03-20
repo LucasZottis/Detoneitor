@@ -23,11 +23,11 @@ namespace Detoneitor.Executeitor
                 Console.WriteLine( "Pasta raíz: " + _sPastaRaiz );
                 Console.WriteLine( "Caminho do .config: " + gerenciador.PastaLimpeza );
 
-                Console.WriteLine( " - Iniciando limpeza..." );
+                Console.WriteLine( "\n - Iniciando limpeza..." );
 
                 LimpadorDePasta.LimparPasta( gerenciador.PastaLimpeza );
 
-                Console.WriteLine( " - Limpeza finalizada!" );
+                Console.WriteLine( "\n - Limpeza finalizada!" );
             }
             catch ( Exception erro )
             {
