@@ -80,8 +80,6 @@
     <Compile Include="FormPlanejeitor.Designer.cs">
       <DependentUpon>FormPlanejeitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Entidades\Configuracao.cs" />
-    <Compile Include="Modelo\Repositorio\Configuracaorepositorio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPlanejeitor.resx">
