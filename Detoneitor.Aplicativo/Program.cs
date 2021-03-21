@@ -21,13 +21,13 @@ namespace Detoneitor.Aplicativo {
             FormDetoneitor detoneitor = new FormDetoneitor();
             GerenciadorConfiguracao configurador;
 
-            detoneitor.PastaRaiz = Environment.CurrentDirectory;
-            configurador = new GerenciadorConfiguracao(Environment.CurrentDirectory);
-
+            string sPastaRaiz = Environment.CurrentDirectory;
 #if DEBUG
-            detoneitor.PastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-            configurador = new GerenciadorConfiguracao(Environment.GetCommandLineArgs()[0]);
+            sPastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 #endif
+
+            detoneitor.PastaRaiz = sPastaRaiz;
+            configurador = new GerenciadorConfiguracao(sPastaRaiz + Planejeitor);
 
             if (configurador.VerificarConfiguracao("CaminhoPasta"))
             {
