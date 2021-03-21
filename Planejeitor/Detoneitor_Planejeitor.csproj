@@ -42,6 +42,9 @@
     <Reference Include="AeroWizard, Version=2.2.8.0, Culture=neutral, PublicKeyToken=915e74f5d64b8f37, processorArchitecture=MSIL">
       <HintPath>..\packages\AeroWizard.2.2.8\lib\net45\AeroWizard.dll</HintPath>
     </Reference>
+    <Reference Include="BibliotecaPublica">
+      <HintPath>..\..\..\Lançamento\Biblioteca Pública\BibliotecaPublica.dll</HintPath>
+    </Reference>
     <Reference Include="CustomMarshalers" />
     <Reference Include="GroupControls, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3726d9da21b6ac8f, processorArchitecture=MSIL">
       <HintPath>..\packages\GroupControls.1.8.0\lib\net45\GroupControls.dll</HintPath>
@@ -74,17 +77,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormPlanejeitor.cs">
+    <Compile Include="Janelas\FormPlanejeitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPlanejeitor.Designer.cs">
+    <Compile Include="Janelas\FormPlanejeitor.Designer.cs">
       <DependentUpon>FormPlanejeitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelo\Entidades\Configuracao.cs" />
-    <Compile Include="Modelo\Repositorio\Configuracaorepositorio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormPlanejeitor.resx">
+    <EmbeddedResource Include="Janelas\FormPlanejeitor.resx">
       <DependentUpon>FormPlanejeitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

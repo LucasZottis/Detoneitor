@@ -1,5 +1,5 @@
 ﻿
-namespace Detoneitor.Planejeitor {
+namespace Detoneitor.Planejeitor.Janelas {
     partial class FormPlanejeitor {
         /// <summary>
         /// Variável de designer necessária.
@@ -28,7 +28,7 @@ namespace Detoneitor.Planejeitor {
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.TxtCaminhoPasta = new System.Windows.Forms.TextBox();
+            this.txtCaminhoPasta = new System.Windows.Forms.TextBox();
             this.BtnBuscarPasta = new System.Windows.Forms.Button();
             this.txtDia = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,7 +56,7 @@ namespace Detoneitor.Planejeitor {
             this.label1.Size = new System.Drawing.Size(51, 30);
             this.label1.TabIndex = 14;
             this.label1.Text = "Pasta: ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel2
             // 
@@ -65,7 +65,7 @@ namespace Detoneitor.Planejeitor {
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.TxtCaminhoPasta, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtCaminhoPasta, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.BtnBuscarPasta, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -74,14 +74,15 @@ namespace Detoneitor.Planejeitor {
             this.tableLayoutPanel2.Size = new System.Drawing.Size(576, 30);
             this.tableLayoutPanel2.TabIndex = 15;
             // 
-            // TxtCaminhoPasta
+            // txtCaminhoPasta
             // 
-            this.TxtCaminhoPasta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtCaminhoPasta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtCaminhoPasta.Location = new System.Drawing.Point(60, 3);
-            this.TxtCaminhoPasta.Name = "TxtCaminhoPasta";
-            this.TxtCaminhoPasta.Size = new System.Drawing.Size(426, 22);
-            this.TxtCaminhoPasta.TabIndex = 13;
+            this.txtCaminhoPasta.Location = new System.Drawing.Point(60, 3);
+            this.txtCaminhoPasta.Name = "txtCaminhoPasta";
+            this.txtCaminhoPasta.Size = new System.Drawing.Size(426, 22);
+            this.txtCaminhoPasta.TabIndex = 13;
+            this.txtCaminhoPasta.Validating += new System.ComponentModel.CancelEventHandler(this.txtCaminhoPasta_Validating);
             // 
             // BtnBuscarPasta
             // 
@@ -103,11 +104,14 @@ namespace Detoneitor.Planejeitor {
             this.txtDia.Size = new System.Drawing.Size(57, 22);
             this.txtDia.TabIndex = 16;
             this.txtDia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDia.TextChanged += new System.EventHandler(this.txtDia_TextChanged);
+            this.txtDia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDia_KeyPress);
+            this.txtDia.Validating += new System.ComponentModel.CancelEventHandler(this.txtDia_Validating);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 59);
+            this.label2.Location = new System.Drawing.Point(31, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 16);
             this.label2.TabIndex = 17;
@@ -131,7 +135,7 @@ namespace Detoneitor.Planejeitor {
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPlanejeitor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Planejêitor";
+            this.Text = ".:: Planejêitor ::.";
             this.Load += new System.EventHandler(this.FormPlanejeitor_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -142,7 +146,7 @@ namespace Detoneitor.Planejeitor {
 
         #endregion
         private System.Windows.Forms.Button BtnSalvar;
-        private System.Windows.Forms.TextBox TxtCaminhoPasta;
+        private System.Windows.Forms.TextBox txtCaminhoPasta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button BtnBuscarPasta;

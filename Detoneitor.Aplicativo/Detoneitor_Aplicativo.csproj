@@ -126,9 +126,9 @@
       <Project>{162cc523-7b55-467a-958c-cf41d1b71e25}</Project>
       <Name>Detoneitor_Executeitor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Planejeitor\Detoneitor.Planejeitor.csproj">
+    <ProjectReference Include="..\Planejeitor\Detoneitor_Planejeitor.csproj">
       <Project>{cefee790-a4b5-450e-9b2e-334ffadede2f}</Project>
-      <Name>Detoneitor.Planejeitor</Name>
+      <Name>Detoneitor_Planejeitor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
