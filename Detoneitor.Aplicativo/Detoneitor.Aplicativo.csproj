@@ -74,15 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormDetoneitor.cs">
+    <Compile Include="Janelas\FormDetoneitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDetoneitor.Designer.cs">
+    <Compile Include="Janelas\FormDetoneitor.Designer.cs">
       <DependentUpon>FormDetoneitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormDetoneitor.resx">
+    <EmbeddedResource Include="Janelas\FormDetoneitor.resx">
       <DependentUpon>FormDetoneitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

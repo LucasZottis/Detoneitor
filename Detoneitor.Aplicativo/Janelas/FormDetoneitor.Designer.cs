@@ -1,5 +1,5 @@
 ﻿
-namespace Detoneitor.Aplicativo {
+namespace Detoneitor.Aplicativo.Janelas {
     partial class FormDetoneitor {
         /// <summary>
         /// Variável de designer necessária.
