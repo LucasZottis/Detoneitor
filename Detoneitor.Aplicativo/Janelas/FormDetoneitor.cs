@@ -8,9 +8,6 @@ namespace Detoneitor.Aplicativo.Janelas {
     public partial class FormDetoneitor : Form {
         #region Propriedades e Atributos
 
-        private static readonly string _planejeitor = @"\Planejeitor.exe";
-        private static readonly string _executeitor = @"\Executeitor.exe";
-
         public string PastaRaiz { private get; set; }
         public string PastaAlvo { private get; set; }
 
