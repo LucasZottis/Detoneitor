@@ -1,5 +1,5 @@
 ﻿
-namespace Detoneitor.Planejeitor {
+namespace Detoneitor.Planejeitor.Janelas {
     partial class FormPlanejeitor {
         /// <summary>
         /// Variável de designer necessária.

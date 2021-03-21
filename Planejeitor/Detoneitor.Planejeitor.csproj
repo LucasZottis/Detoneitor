@@ -74,15 +74,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormPlanejeitor.cs">
+    <Compile Include="Janelas\FormPlanejeitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPlanejeitor.Designer.cs">
+    <Compile Include="Janelas\FormPlanejeitor.Designer.cs">
       <DependentUpon>FormPlanejeitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormPlanejeitor.resx">
+    <EmbeddedResource Include="Janelas\FormPlanejeitor.resx">
       <DependentUpon>FormPlanejeitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
