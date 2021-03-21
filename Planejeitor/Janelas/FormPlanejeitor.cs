@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using BibliotecaPublica.Classes.Estaticas;
 using System.Text;
+using BibliotecaPublica.Classes.Gerenciadores;
 
 namespace Detoneitor.Planejeitor.Janelas {
     public partial class FormPlanejeitor : Form {
@@ -17,6 +18,8 @@ namespace Detoneitor.Planejeitor.Janelas {
 
         #endregion
 
+        #region Construtores
+
         public FormPlanejeitor()
         {
             InitializeComponent();
@@ -27,6 +30,26 @@ namespace Detoneitor.Planejeitor.Janelas {
 #endif
             _sDescricaoTarefa = $"Limpar a pasta {CaminhoPasta}";
         }
+
+        #endregion
+
+        #region Métodos Privados
+
+        public void ConfigurarTarefa()
+        {
+            MonthlyTrigger gatilho = new MonthlyTrigger(int.Parse(txtDia.Text), MonthsOfTheYear.AllMonths);
+            TaskDefinition tarefa = TaskService.Instance.NewTask();
+
+            tarefa.RegistrationInfo.Description = _sDescricaoTarefa;
+            tarefa.Triggers.Add(gatilho);
+            tarefa.Actions.Add(_sCaminhoExecuteitor);
+
+            TaskService.Instance.RootFolder.RegisterTaskDefinition("Detonêitor", tarefa);
+        }
+
+        #endregion
+
+        #region Eventos de formulário
 
         private void FormPlanejeitor_Load(object sender, EventArgs e)
         {
@@ -43,24 +66,31 @@ namespace Detoneitor.Planejeitor.Janelas {
                 MessageBox.Show(sbMensagem.ToString(), ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             txtDia.Text = Dia;
-            TxtCaminhoPasta.Text = CaminhoPasta;
+            txtCaminhoPasta.Text = CaminhoPasta;
         }
+
+        #endregion
+
+        #region Eventos de Button
 
         private void BtnBuscarPasta_Click(object sender, EventArgs e)
         {
             DialogResult resultado = fbdPasta.ShowDialog();
+
             if (resultado == DialogResult.OK || resultado == DialogResult.Yes)
-            {
-                TxtCaminhoPasta.Text = fbdPasta.SelectedPath;
-            }
+                txtCaminhoPasta.Text = fbdPasta.SelectedPath;
         }
 
         private void BtnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                _arquivoConfiguracao.AlterarDia(txtDia.Text);
-                _arquivoConfiguracao.AlterarCaminhoPasta(TxtCaminhoPasta.Text);
+                GerenciadorConfiguracao configurador = new GerenciadorConfiguracao();
+
+                configurador.AlterarConfiguracao(Program._sChaveDia, txtDia.Text);
+                configurador.AlterarConfiguracao(Program._sChaveCaminhoPasta, txtCaminhoPasta.Text);
+
+                configurador.SalvarArquivoAlterado();
             }
             catch (Exception erro)
             {
@@ -69,15 +99,7 @@ namespace Detoneitor.Planejeitor.Janelas {
 
             try
             {
-                MonthlyTrigger gatilho = new MonthlyTrigger(int.Parse(txtDia.Text), MonthsOfTheYear.AllMonths);
-                TaskDefinition tarefa = TaskService.Instance.NewTask();
-
-                tarefa.RegistrationInfo.Description = _sDescricaoTarefa;
-                tarefa.Triggers.Add(gatilho);
-                tarefa.Actions.Add(_sCaminhoExecuteitor);
-
-                TaskService.Instance.RootFolder.RegisterTaskDefinition("Detonêitor", tarefa);
-
+                ConfigurarTarefa();
                 MessageBox.Show("Concluído!", ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception erro)
@@ -85,5 +107,7 @@ namespace Detoneitor.Planejeitor.Janelas {
                 MessageBox.Show(erro.Message, ".:: Planejêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
     }
 }

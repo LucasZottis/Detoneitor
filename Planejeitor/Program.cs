@@ -6,8 +6,8 @@ using System.Windows.Forms;
 
 namespace Detoneitor.Planejeitor {
     static class Program {
-        private static readonly string _sChaveDia = "Dia";
-        private static readonly string _sChaveCaminhoPasta = "CaminhoPasta";
+        public static readonly string _sChaveDia = "Dia";
+        public static readonly string _sChaveCaminhoPasta = "CaminhoPasta";
 
         /// <summary>
         /// Ponto de entrada principal para o aplicativo.
@@ -23,11 +23,17 @@ namespace Detoneitor.Planejeitor {
 
             // Verifica se tem a configuração Dia.
             if (!configurador.VerificarConfiguracao(_sChaveDia))
+            {
                 configurador.CriarConfiguracao(_sChaveDia, null);
+                configurador.SalvarArquivoAlterado();
+            }
 
             // Verifica se tem a configuração CaminhoPasta.
             if (!configurador.VerificarConfiguracao(_sChaveCaminhoPasta))
+            {
                 configurador.CriarConfiguracao(_sChaveCaminhoPasta, null);
+                configurador.SalvarArquivoAlterado();
+            }
 
             // Passa as configurações para o formulário.
             planejeitor.Dia = configurador.BuscarConfiguracao(_sChaveDia);
