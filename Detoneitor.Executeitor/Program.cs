@@ -1,4 +1,5 @@
-﻿using Detoneitor.Executeitor.Entidades;
+﻿using BibliotecaPublica.Classes.Gerenciadores;
+using Detoneitor.Executeitor.Entidades;
 using Detoneitor.Executeitor.Servicos;
 using System;
 using System.Configuration;
@@ -16,10 +17,12 @@ namespace Detoneitor.Executeitor {
 #if (DEBUG)
                 _sPastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 #endif
-                GerenciadorPastas gerenciador = new GerenciadorPastas(ConfigurationManager.OpenExeConfiguration(_sPastaRaiz + @"\Planejeitor.exe").AppSettings.Settings["CaminhoPasta"].Value);
+                GerenciadorConfiguracao configurador = new GerenciadorConfiguracao(_sPastaRaiz + @"\Planejeitor.exe");
+
+                GerenciadorPastas gerenciador = new GerenciadorPastas(configurador.BuscarConfiguracao("CaminhoPasta"));
 
                 Console.WriteLine("Pasta raíz: " + _sPastaRaiz);
-                Console.WriteLine("Caminho do .config: " + gerenciador.PastaLimpeza);
+                Console.WriteLine("Pasta alvo: " + gerenciador.PastaLimpeza);
 
                 Console.WriteLine("\n - Iniciando limpeza...");
 

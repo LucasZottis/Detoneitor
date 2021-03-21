@@ -37,6 +37,9 @@
     <ApplicationIcon>data-cleaning.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BibliotecaPublica">
+      <HintPath>..\..\..\Lançamento\Biblioteca Pública\BibliotecaPublica.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
