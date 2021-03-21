@@ -39,18 +39,35 @@ namespace Detoneitor.Aplicativo.Janelas {
             }
         }
 
-        private void VerificarTamanhoPastaAlvo()
+        private void ObterTamanhoPastaAlvo()
         {
-            long somaTamanhoArquivos = 0;
-            double tamanhoPasta = 0;
-            FileInfo[] arquivos = new DirectoryInfo(PastaAlvo).GetFiles();
+            double lSomaTamanhoArquivos = 0;
+            double lTamanhoPasta = 0;
+
+            lSomaTamanhoArquivos += ObterTamanhoPasta(new DirectoryInfo(PastaAlvo));
+
+            DirectoryInfo[] subPastas = new DirectoryInfo(PastaAlvo).GetDirectories();
+
+            foreach (DirectoryInfo pasta in subPastas)
+            {
+                lSomaTamanhoArquivos += ObterTamanhoPasta(pasta);
+            }
+
+            lTamanhoPasta = lSomaTamanhoArquivos / 1000000;
+
+            lblTamanhoPastaAlvo.Text = string.Format("{0:N}", lTamanhoPasta) + " MB";
+        }
+
+        private long ObterTamanhoPasta(DirectoryInfo pPasta)
+        {
+            long lTamanhoPasta = 0;
+
+            FileInfo[] arquivos = pPasta.GetFiles();
 
             foreach (FileInfo arquivo in arquivos)
-                somaTamanhoArquivos += arquivo.Length;
+                lTamanhoPasta += arquivo.Length;
 
-            tamanhoPasta = somaTamanhoArquivos / 1048576;
-
-            lblTamanhoPastaAlvo.Text = tamanhoPasta + " MB";
+            return lTamanhoPasta;
         }
 
         #endregion
@@ -62,7 +79,7 @@ namespace Detoneitor.Aplicativo.Janelas {
             try
             {
                 VerificarTarefa();
-                VerificarTamanhoPastaAlvo();
+                ObterTamanhoPastaAlvo();
             }
             catch (Exception erro)
             {
