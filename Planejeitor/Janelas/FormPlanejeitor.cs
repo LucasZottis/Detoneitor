@@ -1,14 +1,17 @@
-﻿using Microsoft.Win32.TaskScheduler;
+﻿using BibliotecaPublica.Classes.Estaticas;
+using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Windows.Forms;
 using System.IO;
-using BibliotecaPublica.Classes.Estaticas;
 using System.Text;
 using BibliotecaPublica.Classes.Gerenciadores;
+using System.ComponentModel;
 
 namespace Detoneitor.Planejeitor.Janelas {
     public partial class FormPlanejeitor : Form {
         #region Propriedades e Atributos
+
+        private bool _bLetra = false;
 
         private string _sCaminhoExecuteitor;
         private string _sDescricaoTarefa;
@@ -87,8 +90,11 @@ namespace Detoneitor.Planejeitor.Janelas {
             {
                 GerenciadorConfiguracao configurador = new GerenciadorConfiguracao();
 
-                configurador.AlterarConfiguracao(Program._sChaveDia, txtDia.Text);
-                configurador.AlterarConfiguracao(Program._sChaveCaminhoPasta, txtCaminhoPasta.Text);
+                if (Verificadores.TemConteudo(txtDia.Text))
+                    configurador.AlterarConfiguracao(Program._sChaveDia, txtDia.Text);
+
+                if (Verificadores.TemConteudo(txtCaminhoPasta.Text))
+                    configurador.AlterarConfiguracao(Program._sChaveCaminhoPasta, txtCaminhoPasta.Text);
 
                 configurador.SalvarArquivoAlterado();
             }
@@ -105,6 +111,44 @@ namespace Detoneitor.Planejeitor.Janelas {
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message, ".:: Planejêitor ::. | Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region Eventos de TextBox
+
+        private void txtDia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar))
+            {
+                MessageBox.Show("Apenas números!", ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                _bLetra = true;
+            }
+        }
+
+        private void txtDia_TextChanged(object sender, EventArgs e)
+        {
+            if (_bLetra) txtDia.Clear();
+            _bLetra = false;
+        }
+
+        private void txtDia_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtDia.Text.ParaInt() < 1 || txtDia.Text.ParaInt() > 31)
+            {
+                MessageBox.Show("Dia informado não existe!", ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDia.Clear();
+                txtDia.Focus();
+            }
+        }
+
+        private void txtCaminhoPasta_Validating(object sender, CancelEventArgs e)
+        {
+            if (!Directory.Exists(txtCaminhoPasta.Text) && Verificadores.TemConteudo(txtCaminhoPasta.Text))
+            {
+                MessageBox.Show("Pasta informada não existe!", ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCaminhoPasta.Clear();
             }
         }
 

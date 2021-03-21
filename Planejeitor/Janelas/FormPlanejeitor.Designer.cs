@@ -82,6 +82,7 @@ namespace Detoneitor.Planejeitor.Janelas {
             this.txtCaminhoPasta.Name = "txtCaminhoPasta";
             this.txtCaminhoPasta.Size = new System.Drawing.Size(426, 22);
             this.txtCaminhoPasta.TabIndex = 13;
+            this.txtCaminhoPasta.Validating += new System.ComponentModel.CancelEventHandler(this.txtCaminhoPasta_Validating);
             // 
             // BtnBuscarPasta
             // 
@@ -103,6 +104,9 @@ namespace Detoneitor.Planejeitor.Janelas {
             this.txtDia.Size = new System.Drawing.Size(57, 22);
             this.txtDia.TabIndex = 16;
             this.txtDia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDia.TextChanged += new System.EventHandler(this.txtDia_TextChanged);
+            this.txtDia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDia_KeyPress);
+            this.txtDia.Validating += new System.ComponentModel.CancelEventHandler(this.txtDia_Validating);
             // 
             // label2
             // 
