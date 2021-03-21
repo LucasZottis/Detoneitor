@@ -135,7 +135,7 @@ namespace Detoneitor.Planejeitor.Janelas {
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPlanejeitor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Planejêitor";
+            this.Text = ".:: Planejêitor ::.";
             this.Load += new System.EventHandler(this.FormPlanejeitor_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
