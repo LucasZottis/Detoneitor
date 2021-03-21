@@ -118,9 +118,9 @@
     <None Include="Resources\data-cleaning_64.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Detoneitor.Executeitor\Detoneitor.Executeitor.csproj">
+    <ProjectReference Include="..\Detoneitor.Executeitor\Detoneitor_Executeitor.csproj">
       <Project>{162cc523-7b55-467a-958c-cf41d1b71e25}</Project>
-      <Name>Detoneitor.Executeitor</Name>
+      <Name>Detoneitor_Executeitor</Name>
     </ProjectReference>
     <ProjectReference Include="..\Planejeitor\Detoneitor.Planejeitor.csproj">
       <Project>{cefee790-a4b5-450e-9b2e-334ffadede2f}</Project>
