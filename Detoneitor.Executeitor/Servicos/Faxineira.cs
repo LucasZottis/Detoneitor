@@ -1,7 +1,7 @@
 ﻿using System.IO;
 
 namespace Detoneitor.Executeitor.Servicos {
-    static class LimpadorDePasta {
+    static class Faxineira {
         public static void LimparPasta(string caminho) {
             DirectoryInfo pastaRaiz = new DirectoryInfo(caminho);
             DirectoryInfo[] subPastas = pastaRaiz.GetDirectories();

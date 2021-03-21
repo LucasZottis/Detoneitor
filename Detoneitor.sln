@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detoneitor.Planejeitor", "Planejeitor\Detoneitor.Planejeitor.csproj", "{CEFEE790-A4B5-450E-9B2E-334FFADEDE2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detoneitor.Executeitor", "Detoneitor.Executeitor\Detoneitor.Executeitor.csproj", "{162CC523-7B55-467A-958C-CF41D1B71E25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detoneitor_Executeitor", "Detoneitor.Executeitor\Detoneitor_Executeitor.csproj", "{162CC523-7B55-467A-958C-CF41D1B71E25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detoneitor_Aplicativo", "Detoneitor.Aplicativo\Detoneitor_Aplicativo.csproj", "{FAA1A60D-7A42-4E62-A942-AFF7F10F1858}"
 EndProject

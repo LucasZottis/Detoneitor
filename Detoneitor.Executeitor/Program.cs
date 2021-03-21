@@ -1,38 +1,39 @@
-﻿using Detoneitor.Executeitor.Entidades;
+﻿using BibliotecaPublica.Classes.Gerenciadores;
+using Detoneitor.Executeitor.Entidades;
 using Detoneitor.Executeitor.Servicos;
 using System;
 using System.Configuration;
 using System.IO;
 
-namespace Detoneitor.Executeitor
-{
-    class Program
-    {
+namespace Detoneitor.Executeitor {
+    class Program {
         private static string _sPastaRaiz;
 
-        static void Main( string[] args )
+        static void Main(string[] args)
         {
             try
             {
                 _sPastaRaiz = Environment.CurrentDirectory;
 #if (DEBUG)
-                _sPastaRaiz = Path.GetDirectoryName( Environment.GetCommandLineArgs()[0] );
+                _sPastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 #endif
-                GerenciadorDePastas gerenciador = new GerenciadorDePastas( ConfigurationManager.OpenExeConfiguration( _sPastaRaiz + @"\Planejeitor.exe" ).AppSettings.Settings["CaminhoPasta"].Value );
+                GerenciadorConfiguracao configurador = new GerenciadorConfiguracao(_sPastaRaiz + @"\Planejeitor.exe");
 
-                Console.WriteLine( "Pasta raíz: " + _sPastaRaiz );
-                Console.WriteLine( "Caminho do .config: " + gerenciador.PastaLimpeza );
+                GerenciadorPastas gerenciador = new GerenciadorPastas(configurador.BuscarConfiguracao("CaminhoPasta"));
 
-                Console.WriteLine( "\n - Iniciando limpeza..." );
+                Console.WriteLine("Pasta raíz: " + _sPastaRaiz);
+                Console.WriteLine("Pasta alvo: " + gerenciador.PastaLimpeza);
 
-                LimpadorDePasta.LimparPasta( gerenciador.PastaLimpeza );
+                Console.WriteLine("\n - Iniciando limpeza...");
 
-                Console.WriteLine( "\n - Limpeza finalizada!" );
+                Faxineira.LimparPasta(gerenciador.PastaLimpeza);
+
+                Console.WriteLine("\n - Limpeza finalizada!");
             }
-            catch ( Exception erro )
+            catch (Exception erro)
             {
-                Console.WriteLine( erro.Message );
-                Console.WriteLine( erro.StackTrace );
+                Console.WriteLine(erro.Message);
+                Console.WriteLine(erro.StackTrace);
             }
             finally
             {
