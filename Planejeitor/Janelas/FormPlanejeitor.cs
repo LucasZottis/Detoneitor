@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32.TaskScheduler;
-using Detoneitor.Planejeitor.Modelo.Entidades;
 using System;
 using System.Windows.Forms;
 using System.IO;
