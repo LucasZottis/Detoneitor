@@ -13,10 +13,8 @@ namespace Detoneitor.Executeitor {
         {
             try
             {
-                _sPastaRaiz = Environment.CurrentDirectory;
-#if (DEBUG)
                 _sPastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-#endif
+
                 GerenciadorConfiguracao configurador = new GerenciadorConfiguracao(_sPastaRaiz + @"\Planejeitor.exe");
 
                 GerenciadorPastas gerenciador = new GerenciadorPastas(configurador.BuscarConfiguracao("CaminhoPasta"));
@@ -32,6 +30,7 @@ namespace Detoneitor.Executeitor {
             }
             catch (Exception erro)
             {
+                Console.WriteLine(_sPastaRaiz + @"\Planejeitor.exe");
                 Console.WriteLine(erro.Message);
                 Console.WriteLine(erro.StackTrace);
             }
