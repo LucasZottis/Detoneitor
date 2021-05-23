@@ -1,27 +1,38 @@
 ﻿using Detoneitor.Executeitor.Excecoes;
 using System.IO;
 
-namespace Detoneitor.Executeitor.Entidades {
-    class GerenciadorPastas {
+namespace Detoneitor.Executeitor.Entidades
+{
+    class GerenciadorPastas
+    {
         #region Propriedades e Atributos
 
         private readonly string _sPastaLogExcecao = @"\LogExcecao\";
         private readonly string _sPastaLogExecucao = @"\LogExecucao\";
-        public string PastaLimpeza { get; private set; }
 
         #endregion
+
+        #region Propriedades
+
+        public string PastaLimpeza { get; private set; }
+
+        #endregion Propriedades
 
         #region Construtores
 
-        public GerenciadorPastas(string pCaminhoPasta)
+        public GerenciadorPastas(string caminhoPasta)
         {
-            if (Directory.Exists(pCaminhoPasta)) 
-                PastaLimpeza = pCaminhoPasta; 
-            else 
+            if (Directory.Exists(caminhoPasta))
+            {
+                PastaLimpeza = caminhoPasta;
+            }
+            else
+            {
                 throw new GerenciadorPastasException("Caminho da pasta de limpeza não existe");
+            }
         }
 
-        #endregion
+        #endregion Construtores
 
         #region Métodos Públicos
 
@@ -32,9 +43,9 @@ namespace Detoneitor.Executeitor.Entidades {
         /// <returns>
         /// Caminho da pasta LogExcecao.
         /// </returns>
-        public string ObterPastaExcecao(string pCaminhoRaiz)
+        public string ObterPastaExcecao(string caminhoRaiz)
         {
-            return pCaminhoRaiz + _sPastaLogExcecao;
+            return caminhoRaiz + _sPastaLogExcecao;
         }
 
         /// <summary>
@@ -44,21 +55,28 @@ namespace Detoneitor.Executeitor.Entidades {
         /// <returns>
         /// Caminho da pasta LogExecucao.
         /// </returns>
-        public string ObterPastaExecucao(string pCaminhoRaiz)
+        public string ObterPastaExecucao(string caminhoRaiz)
         {
-            return pCaminhoRaiz + _sPastaLogExecucao;
+            return caminhoRaiz + _sPastaLogExecucao;
         }
 
         /// <summary>
         /// Verifica se as pastas de logs existem, caso não existam serão criadas.
         /// </summary>
         /// <param name="pCaminhoRaiz"></param>
-        public void VerificarPastas(string pCaminhoRaiz)
+        public void VerificarPastas(string caminhoRaiz)
         {
-            if (Directory.Exists(pCaminhoRaiz + _sPastaLogExecucao) == false) Directory.CreateDirectory(pCaminhoRaiz + _sPastaLogExecucao);
-            if (Directory.Exists(pCaminhoRaiz + _sPastaLogExcecao) == false) Directory.CreateDirectory(pCaminhoRaiz + _sPastaLogExcecao);
+            if (!Directory.Exists(caminhoRaiz + _sPastaLogExecucao))
+            {
+                Directory.CreateDirectory(caminhoRaiz + _sPastaLogExecucao);
+            }
+
+            if (!Directory.Exists(caminhoRaiz + _sPastaLogExcecao))
+            {
+                Directory.CreateDirectory(caminhoRaiz + _sPastaLogExcecao);
+            }
         }
 
-        #endregion
+        #endregion Métodos Públicos
     }
 }

@@ -1,5 +1,4 @@
-﻿using BibliotecaPublica.Classes.Estaticas;
-using BibliotecaPublica.Classes.Gerenciadores;
+﻿using BibliotecaPublica.Classes.Gerenciadores;
 using Detoneitor.Planejeitor.Janelas;
 using System;
 using System.Windows.Forms;

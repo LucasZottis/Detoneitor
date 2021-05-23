@@ -2,42 +2,95 @@
 using Detoneitor.Executeitor.Entidades;
 using Detoneitor.Executeitor.Servicos;
 using System;
-using System.Configuration;
+using System.Collections.Generic;
 using System.IO;
 
-namespace Detoneitor.Executeitor {
-    class Program {
-        private static string _sPastaRaiz;
+namespace Detoneitor.Executeitor
+{
+    class Program
+    {
+        private static List<string> _pastas = new List<string>();
 
-        static void Main(string[] args)
+        private static GerenciadorConfiguracao _configurador = new GerenciadorConfiguracao(CriarCaminhoPlanejeitor());
+        private static GerenciadorPastas _gerenciador = new GerenciadorPastas(_configurador.BuscarConfiguracao("CaminhoPasta"));
+        private static LogExecucao _logExecucao = new LogExecucao();
+        private static LogExcecao _logExcecao = null;
+
+        static void Main()
         {
             try
             {
-                _sPastaRaiz = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+                _logExecucao.IniciarLog(DateTime.Now);
 
-                GerenciadorConfiguracao configurador = new GerenciadorConfiguracao(_sPastaRaiz + @"\Planejeitor.exe");
+                _gerenciador.VerificarPastas(ObterCaminhoPastaRaiz());
+                AdicionarPastasLista();
 
-                GerenciadorPastas gerenciador = new GerenciadorPastas(configurador.BuscarConfiguracao("CaminhoPasta"));
+                ImprimirMensagens(" ****** Pastas ******", true);
+                ImprimirPastas(_pastas);
 
-                Console.WriteLine("Pasta raíz: " + _sPastaRaiz);
-                Console.WriteLine("Pasta alvo: " + gerenciador.PastaLimpeza);
+                ImprimirMensagens(" ****** Limpeza ******", true);
+                ExecutarLimpeza();
 
-                Console.WriteLine("\n - Iniciando limpeza...");
-
-                Faxineira.LimparPasta(gerenciador.PastaLimpeza);
-
-                Console.WriteLine("\n - Limpeza finalizada!");
+                _logExecucao.FinalizarLog(DateTime.Now);
             }
             catch (Exception erro)
             {
-                Console.WriteLine(_sPastaRaiz + @"\Planejeitor.exe");
-                Console.WriteLine(erro.Message);
-                Console.WriteLine(erro.StackTrace);
+                _logExcecao = new LogExcecao(erro.Message, erro.StackTrace);
+                Console.WriteLine(erro.Message + "\n" + erro.StackTrace);
             }
             finally
             {
+                GeradorLog.CriarArquivoLog(_logExecucao, _gerenciador.ObterPastaExecucao(ObterCaminhoPastaRaiz()));
+
+                if (_logExcecao != null)
+                {
+                    GeradorLog.CriarArquivoLog(_logExcecao, _gerenciador.ObterPastaExcecao(ObterCaminhoPastaRaiz()));
+                }
+
                 Console.ReadKey();
             }
+        }
+
+        private static void AdicionarPastasLista()
+        {
+            _pastas.Add(ObterCaminhoPastaRaiz());
+            _pastas.Add(_gerenciador.PastaLimpeza);
+        }
+
+        private static string ObterCaminhoPastaRaiz()
+        {
+            return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+        }
+
+        private static string CriarCaminhoPlanejeitor()
+        {
+            return ObterCaminhoPastaRaiz() + @"\Planejeitor.exe";
+        }
+
+        private static void ImprimirPastas(List<string> pastas)
+        {
+            foreach (string pasta in pastas)
+            {
+                ImprimirMensagens($"Pasta: {pasta}");
+            }
+        }
+
+        private static void ImprimirMensagens(string mensagem, bool titulo = false)
+        {
+            Console.WriteLine(titulo ? "\n " + mensagem : "\n - " + mensagem);
+            _logExecucao.AdicionarMensagem(mensagem);
+        }
+
+        private static void ExecutarLimpeza()
+        {
+            ImprimirMensagens("Iniciando limpeza...");
+
+            Faxineira.LimparPasta(_gerenciador.PastaLimpeza);
+            ImprimirMensagens($"Pasta: {Path.GetDirectoryName(_gerenciador.PastaLimpeza)} está limpa!");
+
+            ImprimirMensagens("Limpeza finalizada!");
+
+            Faxineira.LimparPasta(_gerenciador.PastaLimpeza);
         }
     }
 }

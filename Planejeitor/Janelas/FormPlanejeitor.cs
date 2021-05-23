@@ -1,11 +1,12 @@
-﻿using BibliotecaPublica.Classes.Estaticas;
-using Microsoft.Win32.TaskScheduler;
+﻿using Microsoft.Win32.TaskScheduler;
 using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
 using BibliotecaPublica.Classes.Gerenciadores;
 using System.ComponentModel;
+using BibliotecaPublica.Classes.Conversores;
+using BibliotecaPublica.Classes.Verificadores;
 
 namespace Detoneitor.Planejeitor.Janelas {
     public partial class FormPlanejeitor : Form {
@@ -65,7 +66,7 @@ namespace Detoneitor.Planejeitor.Janelas {
             if (Directory.Exists(CaminhoPasta) == false) sbMensagem.AppendLine(" - Caminho informado não existe!");
 
             // Verifica se a mensagem tem algum conteúdo, caso tenha, irá aprensentar a mensagem em tela.
-            if (Verificadores.TemConteudo(sbMensagem))
+            if (sbMensagem.TemConteudo())
                 MessageBox.Show(sbMensagem.ToString(), ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             txtDia.Text = Dia;
@@ -90,10 +91,10 @@ namespace Detoneitor.Planejeitor.Janelas {
             {
                 GerenciadorConfiguracao configurador = new GerenciadorConfiguracao();
 
-                if (Verificadores.TemConteudo(txtDia.Text))
+                if (txtDia.Text.TemConteudo())
                     configurador.AlterarConfiguracao(Program._sChaveDia, txtDia.Text);
 
-                if (Verificadores.TemConteudo(txtCaminhoPasta.Text))
+                if (txtCaminhoPasta.Text.TemConteudo())
                     configurador.AlterarConfiguracao(Program._sChaveCaminhoPasta, txtCaminhoPasta.Text);
 
                 configurador.SalvarArquivoAlterado();
@@ -145,7 +146,7 @@ namespace Detoneitor.Planejeitor.Janelas {
 
         private void txtCaminhoPasta_Validating(object sender, CancelEventArgs e)
         {
-            if (!Directory.Exists(txtCaminhoPasta.Text) && Verificadores.TemConteudo(txtCaminhoPasta.Text))
+            if (!Directory.Exists(txtCaminhoPasta.Text) && txtCaminhoPasta.Text.TemConteudo())
             {
                 MessageBox.Show("Pasta informada não existe!", ".:: Planejêitor ::.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCaminhoPasta.Clear();
