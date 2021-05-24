@@ -56,4 +56,4 @@ namespace Detoneitor.Executeitor.Entidades
 
         #endregion Métodos Sobrescritos
     }
-}
+} 
